@@ -3,6 +3,6 @@
   become: yes  # This means that all tasks will be executed with sudo
   vars:
     venv_path: /home/vagrant/venv
-    requirements_path: /webapps/devops/requirements.txt
+    requirements_path: /vagrant/requirements.txt
   roles:
     - {role: python}
