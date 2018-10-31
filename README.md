@@ -1,4 +1,4 @@
-# rakuten
+# Rakuten
 **Devops Challenge**
 
 When you're done, we should be able to type vagrant up and our app will be running and reachable on http port 80 at http://10.10.10.20
