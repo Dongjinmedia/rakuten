@@ -26,9 +26,35 @@
     name: virtualenv
     executable: pip3
 
+- name: install flask with pip
+  pip: 
+    name: flask
+    executable: pip3
+
+- name: install Werkzeug with pip
+  pip: 
+    name: Werkzeug
+    executable: pip3
+
 - name: Create virtualenv
   become: no
   pip:
     virtualenv: "{{ venv_path }}"
     virtualenv_python: python3.6
     requirements: "{{ requirements_path }}"
+
+- name: create dir for repo as sudo
+  file:
+    path: /webapps/devops
+    state: directory
+    owner: vagrant
+    group: vagrant
+
+- name: clone repo
+  become: no 
+  git:
+    repo: 'https://dongjinmedia@bitbucket.org/azneita/devops-challenge.git'
+    dest: /webapps/devops
+
+- name: Launch flask website
+  shell: "cd /webapps/devops; sudo nohup flask run --host 10.10.10.20 --port 80 2>&1 >/dev/null &"
